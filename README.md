@@ -1,20 +1,43 @@
 # poc-robins10-homepage-pwa
 
-## Build Setup
+## `0.0.0-0`
 
-```bash
-# install dependencies
-$ yarn install
+## Description
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+This Proof of Concepts aims to develop suitable skills about creating an UI using Vue and Vuetivy over Nuxt.js framework. For do that, it's used the creation of the Robin's 10 webpage as background.
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## Technologies
 
-# generate static project
-$ yarn generate
-```
+| Name    | Version |
+| ------- | ------- |
+| Vue.js  | 1.0.0   |
+| Vuetify | 1.0.0   |
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+## Development
+
+### Robin's 10 homepage
+
+Lorem ipsum dolor sit amet,
+
+### Searching feature
+
+Lorem ipsum dolor sit amet,
+
+### Sticky navigation panel
+
+Lorem ipsum dolor sit amet,
+
+## Improvements
+
+Lorem ipsum dolor sit amet,
+
+## Conclusion
+
+Lorem ipsum dolor sit amet,
+
+## Changelog
+
+### First Commit
+
+- **0.0.0: First Commit**
+  - `Initiated at 01-31-2021`

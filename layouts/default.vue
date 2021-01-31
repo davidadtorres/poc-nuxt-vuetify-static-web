@@ -298,13 +298,14 @@
         <v-card-text class="d-flex justify-center align-center py-4">
           <v-btn
             v-for="link in footer_links"
-            :key="link"
+            :key="link.name"
             color="primary"
             text
             rounded
             class="mr-8"
+            :to="link.path"
           >
-            {{ link }}
+            {{ link.name }}
           </v-btn>
 
           <v-btn
@@ -350,7 +351,7 @@ export default {
       search: null,
       search_bkp: null,
       snackbar: false,
-      footer_links: ['About'],
+      footer_links: [{ name: 'About', path: '/about' }],
       menu_badge: false,
       valid_login_form: true,
       email: '',
@@ -365,7 +366,6 @@ export default {
       settings: [
         { title: 'New Post', icon: 'mdi-file-document' },
         { title: 'Edit Post', icon: 'mdi-file-document-edit' },
-        { title: 'Delete Post', icon: 'mdi-delete' },
       ],
       login_alert: false,
     }

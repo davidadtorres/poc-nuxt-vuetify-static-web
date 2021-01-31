@@ -1,5 +1,7 @@
 <template>
-  <v-container>
+  <v-container class="mt-n14">
+    <v-btn color="primary" to="/" class="mb-8"> Back Home </v-btn>
+
     <v-data-table
       :headers="headers"
       :items="projects"
@@ -27,9 +29,6 @@
         >
       </template>
     </v-data-table>
-    <v-row align="center" justify="center" class="ma-5">
-      <v-btn color="primary" to="/"> Back </v-btn>
-    </v-row>
   </v-container>
 </template>
 

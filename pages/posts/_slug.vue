@@ -3,23 +3,27 @@
     <v-row>
       <!-- Visible only for desktop -->
       <v-col cols="12" md="3" class="d-none d-md-block">
-        <nav class="section-nav text-h6">
-          <ol>
-            <li><NuxtLink to="#description">Description</NuxtLink></li>
-            <li><NuxtLink to="#technologies">Technologies</NuxtLink></li>
+        <div class="sticky-panel">
+          <v-btn color="primary" to="/" class="mb-6"> Back Home </v-btn>
 
-            <li>
-              <NuxtLink to="#development">Development</NuxtLink>
-              <ul>
-                <li v-for="topic in dev_topics" :key="topic.id">
-                  <NuxtLink :to="'#' + topic.id">{{ topic.title }}</NuxtLink>
-                </li>
-              </ul>
-            </li>
-            <li><NuxtLink to="#improvements">Improvements</NuxtLink></li>
-            <li><NuxtLink to="#conclusion">Conclusion</NuxtLink></li>
-          </ol>
-        </nav>
+          <nav class="section-nav text-h6">
+            <ol>
+              <li><NuxtLink to="#description">Description</NuxtLink></li>
+              <li><NuxtLink to="#technologies">Technologies</NuxtLink></li>
+
+              <li>
+                <NuxtLink to="#development">Development</NuxtLink>
+                <ul>
+                  <li v-for="topic in dev_topics" :key="topic.id">
+                    <NuxtLink :to="'#' + topic.id">{{ topic.title }}</NuxtLink>
+                  </li>
+                </ul>
+              </li>
+              <li><NuxtLink to="#improvements">Improvements</NuxtLink></li>
+              <li><NuxtLink to="#conclusion">Conclusion</NuxtLink></li>
+            </ol>
+          </nav>
+        </div>
 
         <!-- <v-navigation-drawer>
           <div>
@@ -109,15 +113,28 @@
           <v-col cols="12">
             <a id="technologies" class="anchor"></a>
             <p class="text-h4 primary--text">Technologies</p>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th
+                      v-for="header in header_list"
+                      :key="header"
+                      class="text-left"
+                    >
+                      {{ header }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="tech in tech_list" :key="tech.name">
+                    <td>{{ tech.name }}</td>
+                    <td>{{ tech.version }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
           </v-col>
         </v-row>
 
@@ -188,11 +205,11 @@
             </p>
           </v-col>
         </v-row>
-        <v-img contain max-height="250" src="/robin.svg" class="my-12"></v-img>
       </v-col>
 
       <!-- Visible only for mobile/tablet -->
       <v-col cols="12" class="d-md-none">
+        <v-btn color="primary" to="/" class="mb-6"> Back Home </v-btn>
         <v-row>
           <v-col cols="12">
             <p class="text-h4 text-center mb-5">
@@ -207,15 +224,127 @@
           </v-col>
         </v-row>
 
-        <v-row>
-          <v-col cols="12"> </v-col>
+        <v-row class="mt-10">
+          <v-col cols="12">
+            <a class="anchor"></a>
+            <p class="text-h4 primary--text">Description</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </v-col>
+        </v-row>
+
+        <v-row class="mt-10">
+          <v-col cols="12">
+            <a class="anchor"></a>
+            <p class="text-h4 primary--text">Technologies</p>
+
+            <v-simple-table>
+              <template v-slot:default>
+                <thead>
+                  <tr>
+                    <th
+                      v-for="header in header_list"
+                      :key="header"
+                      class="text-left"
+                    >
+                      {{ header }}
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="tech in tech_list" :key="tech.name">
+                    <td>{{ tech.name }}</td>
+                    <td>{{ tech.version }}</td>
+                  </tr>
+                </tbody>
+              </template>
+            </v-simple-table>
+          </v-col>
+        </v-row>
+
+        <v-row class="mt-10">
+          <v-col cols="12">
+            <a class="anchor"></a>
+            <p class="text-h4 primary--text">Development</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+
+            <v-row v-for="topic in dev_topics" :key="topic.id" class="mt-10">
+              <v-col cols="12">
+                <a class="anchor"></a>
+                <p class="text-h4 primary--text">
+                  <v-icon large color="secondary"> mdi-map-marker-star </v-icon>
+                  {{ topic.title }}
+                </p>
+                <p class="pl-2">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                  laboris nisi ut aliquip ex ea commodo consequat. Duis aute
+                  irure dolor in reprehenderit in voluptate velit esse cillum
+                  dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+                  cupidatat non proident, sunt in culpa qui officia deserunt
+                  mollit anim id est laborum.
+                </p>
+              </v-col>
+            </v-row>
+          </v-col>
+        </v-row>
+
+        <v-row class="mt-10">
+          <v-col cols="12">
+            <a class="anchor"></a>
+            <p class="text-h4 primary--text">Improvements</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </v-col>
+        </v-row>
+
+        <v-row class="mt-10">
+          <v-col cols="12">
+            <a class="anchor"></a>
+            <p class="text-h4 primary--text">Conclusion</p>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+          </v-col>
         </v-row>
       </v-col>
     </v-row>
+    <v-img contain max-height="250" src="/robin.svg" class="my-12"></v-img>
   </div>
 </template>
 
 <script>
+const HEADERS = ['Name', 'Version']
+
 export default {
   data() {
     return {
@@ -224,6 +353,11 @@ export default {
         { id: 'homepage', title: "Robin's 10 homepage" },
         { id: 'search', title: 'Searching feature' },
       ],
+      tech_list: [
+        { name: 'Nuxt.js', version: '2.14.12' },
+        { name: 'Vuetify', version: '1.11.2' },
+      ],
+      header_list: HEADERS,
     }
   },
   mounted() {
@@ -302,13 +436,17 @@ html {
   scroll-behavior: smooth;
 }
 
-.section-nav {
+.sticky-panel {
   position: sticky;
   top: 90px;
   border-right: 1px solid #efefef;
 }
 
-.section-nav ol,
+.section-nav ol {
+  list-style: none;
+  padding: 0;
+}
+
 .section-nav ul {
   list-style: none;
 }
