@@ -1,6 +1,6 @@
 {
   "name": "poc-robins10-homepage-pwa",
-  "version": "0.0.0-4",
+  "version": "0.0.0-5",
   "private": true,
   "scripts": {
     "dev": "nuxt --hostname 0.0.0.0 --port 8080",
