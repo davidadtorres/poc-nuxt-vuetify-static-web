@@ -228,7 +228,12 @@
 
       <v-subheader v-show="has_logged">Settings</v-subheader>
       <v-list v-show="has_logged" dense nav>
-        <v-list-item v-for="item in settings" :key="item.title" link>
+        <v-list-item
+          v-for="item in settings"
+          :key="item.title"
+          link
+          to="/posts/mgm"
+        >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -364,8 +369,11 @@ export default {
       show_pass: false,
       has_logged: false,
       settings: [
-        { title: 'New Post', icon: 'mdi-file-document' },
-        { title: 'Edit Post', icon: 'mdi-file-document-edit' },
+        {
+          title: 'Manage Posts',
+          icon: 'mdi-file-document-edit',
+          to: 'posts-mgm',
+        },
       ],
       login_alert: false,
     }
