@@ -326,7 +326,7 @@
 
         <v-card-text class="d-flex justify-center">
           <span id="footer-title" class="primary--text"
-            >&copy; 2020 Robin's 10</span
+            >&copy; 2020 Robin's 10 v{{ version }}</span
           >
         </v-card-text>
       </v-card>
@@ -335,12 +335,15 @@
 </template>
 
 <script>
+import pkg from '../package.json'
+
 const POC_CHIP = 0
 const PRJ_CHIP = 1
 const MGM_CHIP = 2
 export default {
   data() {
     return {
+      version: pkg.version,
       right: true,
       fixed: true,
       right_drawer: false,
