@@ -25,9 +25,9 @@
 
       <v-card-text>
         <v-row align="center" class="mx-0 mb-10">
-          <v-chip dark small :color="post.category_color" class="mr-4">
+          <v-chip dark small :color="post.category.color" class="mr-4">
             <v-icon left> mdi-label </v-icon>
-            {{ post.category }}
+            {{ post.category.name }}
           </v-chip>
           <div class="subtitle-1 mr-4">{{ post.author }}</div>
           <div class="grey--text">{{ post.date }}</div>
@@ -62,8 +62,7 @@ const POSTS = [
     title: "Create Robin's 10 homepage with Nuxt.js",
     description:
       "Creating this Robin's 10 homepage UI like a Blog, using Nuxt.js with Vuetify",
-    category: 'PoC',
-    category_color: 'deep-purple darken-1',
+    category: { name: 'PoC', color: 'deep-purple darken-1' },
   },
   {
     id: 2,
@@ -72,8 +71,7 @@ const POSTS = [
     title: "Create Robin's 10 Homepage as NativeScript-Vue app",
     description:
       "Creating a Robin's 10 mobile app like a Blog, using NativeScript-Vue",
-    category: 'PoC',
-    category_color: 'deep-purple darken-1',
+    category: { name: 'PoC', color: 'deep-purple darken-1' },
   },
 ]
 
@@ -95,7 +93,7 @@ export default {
     loadPostDetail(title) {
       this.$router.push({
         name: 'posts-slug',
-        params: { slug: title.split(' ').join('-') },
+        params: { slug: title.split(/[ .]/).join('-') },
       })
     },
   },

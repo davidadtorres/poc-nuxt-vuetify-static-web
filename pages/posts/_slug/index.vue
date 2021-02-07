@@ -6,7 +6,7 @@
         <div class="sticky-panel">
           <v-btn color="primary" to="/" class="mb-6"> Back Home </v-btn>
 
-          <nav class="section-nav text-h6">
+          <nav class="section-nav text-subtitle-1">
             <ol>
               <li><NuxtLink to="#description">Description</NuxtLink></li>
               <li><NuxtLink to="#technologies">Technologies</NuxtLink></li>
