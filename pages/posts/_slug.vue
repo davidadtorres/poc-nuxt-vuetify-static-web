@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-n10">
+  <v-container>
     <v-row>
       <!-- Visible only for desktop -->
       <v-col cols="12" md="3" class="d-none d-md-block">
@@ -73,7 +73,7 @@
       <v-col cols="12" md="9" class="d-none d-md-block">
         <v-row>
           <v-col cols="12">
-            <p class="text-h3 mb-10">
+            <p class="text-h4 mb-10">
               Creating this Robin's 10 homepage UI like a Blog, using Nuxt.js
               with Vuetify
             </p>
@@ -339,7 +339,7 @@
       </v-col>
     </v-row>
     <v-img contain max-height="250" src="/robin.svg" class="my-12"></v-img>
-  </div>
+  </v-container>
 </template>
 
 <script>

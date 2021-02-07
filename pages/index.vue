@@ -1,5 +1,5 @@
 <template>
-  <v-container class="mt-n10">
+  <v-container>
     <v-card
       v-for="post in posts"
       :key="post.id"

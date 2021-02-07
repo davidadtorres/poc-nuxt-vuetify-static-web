@@ -1,6 +1,11 @@
 <template>
-  <v-container class="mt-n14">
-    <v-btn color="primary" to="/" class="mb-8"> Back Home </v-btn>
+  <v-container>
+    <div class="d-flex justify-start">
+      <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
+    </div>
+    <div class="d-flex justify-center">
+      <p class="text-h4">Project list</p>
+    </div>
 
     <v-data-table
       :headers="headers"
@@ -23,9 +28,9 @@
         <!-- <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon> -->
 
-        <v-icon small> mdi-information </v-icon>
+        <v-icon medium> mdi-information </v-icon>
         <a style="text-decoration: none" :href="item.url" target="_blank"
-          ><v-icon small> mdi-web </v-icon></a
+          ><v-icon medium> mdi-web </v-icon></a
         >
       </template>
     </v-data-table>

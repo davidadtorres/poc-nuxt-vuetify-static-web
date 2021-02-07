@@ -54,7 +54,7 @@
         offset-x="10"
       >
         <v-badge
-          :value="has_logged"
+          :value="$store.state.logged"
           overlap
           color="primary secondary--text"
           icon="mdi-shield-check"
@@ -68,45 +68,46 @@
         </v-badge>
       </v-badge>
     </v-app-bar>
-    <v-parallax dark height="220" src="/robins10_parallax.svg">
-      <v-row align="center" justify="center">
-        <v-col class="text-center" cols="12">
-          <h1 id="parallax-tittle" class="display-1 font-weight-bold mt-14">
-            Robin's 10
-          </h1>
-          <h4 id="parallax-subtittle" class="subheading">
-            Fair and accuracy software development!
-          </h4>
+    <div v-if="$store.state.logged" class="mt-6"></div>
+    <div v-else class="mt-2 mb-n10">
+      <v-parallax dark height="220" src="/robins10_parallax.svg">
+        <v-row align="center" justify="center">
+          <v-col class="text-center" cols="12">
+            <h1 id="parallax-tittle" class="display-1 font-weight-bold mt-14">
+              Robin's 10
+            </h1>
+            <h4 id="parallax-subtittle" class="subheading">
+              Fair and accuracy software development!
+            </h4>
 
-          <v-btn class="mt-2" color="primary" to="/projects">
-            Go to Projects
-          </v-btn>
-        </v-col>
-      </v-row>
-    </v-parallax>
-    <v-main>
-      <v-container>
-        <v-snackbar
-          v-model="snackbar"
-          timeout="-1"
-          color="secondary"
-          style="top: 80px"
-          elevation="24"
-        >
-          Filters activated
-          <template v-slot:action="{ attrs }">
-            <v-btn
-              color="primary"
-              text
-              v-bind="attrs"
-              @click="right_drawer = !right_drawer"
-            >
-              Go Filters
+            <v-btn class="mt-2" color="primary" to="/projects">
+              Go to Projects
             </v-btn>
-          </template>
-        </v-snackbar>
-        <nuxt />
-      </v-container>
+          </v-col>
+        </v-row>
+      </v-parallax>
+    </div>
+    <v-main>
+      <v-snackbar
+        v-model="snackbar"
+        timeout="-1"
+        color="secondary"
+        style="top: 80px"
+        elevation="24"
+      >
+        Filters activated
+        <template v-slot:action="{ attrs }">
+          <v-btn
+            color="primary"
+            text
+            v-bind="attrs"
+            @click="right_drawer = !right_drawer"
+          >
+            Go Filters
+          </v-btn>
+        </template>
+      </v-snackbar>
+      <nuxt />
     </v-main>
 
     <v-navigation-drawer
@@ -226,8 +227,8 @@
         </v-list-item>
       </v-list>
 
-      <v-subheader v-show="has_logged">Settings</v-subheader>
-      <v-list v-show="has_logged" dense nav>
+      <v-subheader v-show="$store.state.logged">Settings</v-subheader>
+      <v-list v-show="$store.state.logged" dense nav>
         <v-list-item
           v-for="item in settings"
           :key="item.title"
@@ -246,7 +247,7 @@
 
       <v-subheader>Access</v-subheader>
 
-      <div v-if="has_logged" class="mx-4">
+      <div v-if="$store.state.logged" class="mx-4">
         <v-card>
           <v-card-text class="text-h6 secondary--text text-center">
             {{ email }}
@@ -370,11 +371,15 @@ export default {
       },
       password: '',
       show_pass: false,
-      has_logged: false,
       settings: [
         {
           title: 'Manage Posts',
           icon: 'mdi-file-document-edit',
+          to: 'posts-mgm',
+        },
+        {
+          title: 'Manage Projects',
+          icon: 'mdi-application',
           to: 'posts-mgm',
         },
       ],
@@ -442,7 +447,7 @@ export default {
     loginUser() {
       if (this.$refs.login_form.validate()) {
         if (this.email === 'test@mail.com' && this.password === '12345678') {
-          this.has_logged = true
+          this.$store.commit('login')
           this.login_alert = false
         } else {
           this.login_alert = true
@@ -450,7 +455,7 @@ export default {
       }
     },
     logoutUser() {
-      this.has_logged = false
+      this.$store.commit('logout')
       this.email = ''
       this.password = ''
     },
