@@ -1,6 +1,6 @@
 {
-  "name": "poc-robins10-homepage-pwa",
-  "version": "0.0.0-57",
+  "name": "robins10-homepage-pwa",
+  "version": "0.0.0-58",
   "private": true,
   "scripts": {
     "dev": "nuxt --hostname 0.0.0.0 --port 8080",
@@ -34,6 +34,6 @@
     "vue-jest": "^3.0.4"
   },
   "main": "index.js",
-  "repository": "git@github.com:davidadtorres/poc-robins10-homepage-pwa.git",
+  "repository": "git@github.com:davidadtorres/robins10-homepage-pwa.git",
   "license": "MIT"
 }
