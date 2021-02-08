@@ -1,5 +1,6 @@
 export const state = () => ({
   logged: false,
+  error: false,
 })
 
 export const mutations = {
@@ -8,5 +9,8 @@ export const mutations = {
   },
   logout(state) {
     state.logged = false
+  },
+  setError(state, value) {
+    state.error = value
   },
 }

@@ -4,7 +4,7 @@
 
     <v-row>
       <v-card class="mx-3 mb-10">
-        <v-img height="200px" src="/robins10_header.svg">
+        <v-img height="200" src="/robins10_header.svg">
           <v-card-title class="secondary--text mt-8">
             <v-avatar size="120">
               <img alt="David" src="/robin.svg" />

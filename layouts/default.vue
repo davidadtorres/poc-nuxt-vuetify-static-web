@@ -68,7 +68,7 @@
         </v-badge>
       </v-badge>
     </v-app-bar>
-    <div v-if="$store.state.logged" class="mt-6"></div>
+    <div v-if="$store.state.logged || $store.state.error" class="mt-6"></div>
     <div v-else class="mt-2 mb-n10">
       <v-parallax dark height="220" src="/robins10_parallax.svg">
         <v-row align="center" justify="center">

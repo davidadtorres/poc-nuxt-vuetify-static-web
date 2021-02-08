@@ -14,7 +14,7 @@ export default {
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    titleTemplate: "%s - Robin's 10",
+    titleTemplate: "%s - Homepage",
     title: "Robin's 10",
     meta: [
       { charset: 'utf-8' },
