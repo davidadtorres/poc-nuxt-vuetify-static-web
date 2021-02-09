@@ -68,25 +68,6 @@
         </v-badge>
       </v-badge>
     </v-app-bar>
-    <div v-if="$store.state.logged || $store.state.error" class="mt-6"></div>
-    <div v-else class="mt-2 mb-n10">
-      <v-parallax dark height="220" src="/robins10_parallax.svg">
-        <v-row align="center" justify="center">
-          <v-col class="text-center" cols="12">
-            <h1 id="parallax-tittle" class="display-1 font-weight-bold mt-14">
-              Robin's 10
-            </h1>
-            <h4 id="parallax-subtittle" class="subheading">
-              Fair and accuracy software development!
-            </h4>
-
-            <v-btn class="mt-2" color="primary" to="/projects">
-              Go to Projects
-            </v-btn>
-          </v-col>
-        </v-row>
-      </v-parallax>
-    </div>
     <v-main>
       <v-snackbar
         v-model="snackbar"
@@ -464,8 +445,6 @@ export default {
 </script>
 
 <style scoped>
-#parallax-tittle,
-#parallax-subtittle,
 #header-title,
 #footer-title {
   font-family: 'Comfortaa', cursive !important;

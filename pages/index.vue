@@ -1,55 +1,73 @@
 <template>
-  <v-container>
-    <v-card
-      v-for="post in posts"
-      :key="post.id"
-      class="mx-sm-10 mb-10"
-      elevation="2"
-      outlined
-    >
-      <template slot="progress">
-        <v-progress-linear
-          color="deep-purple"
-          height="10"
-          indeterminate
-        ></v-progress-linear>
-      </template>
+  <div>
+    <v-parallax height="220" src="/robins10_parallax.svg">
+      <v-row align="center" justify="center">
+        <v-col class="text-center" cols="12">
+          <h1 id="parallax-tittle" class="display-1 font-weight-bold">
+            Robin's 10
+          </h1>
+          <h4 id="parallax-subtittle" class="subheading">
+            Fair and accuracy software development!
+          </h4>
 
-      <v-img
-        max-height="400"
-        contain
-        src="/PoC-1_Robins10_homepage.svg"
-      ></v-img>
+          <v-btn class="mt-2" color="primary" to="/projects">
+            Go to Projects
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-parallax>
+    <v-container>
+      <v-card
+        v-for="post in posts"
+        :key="post.id"
+        class="mx-sm-10 my-10"
+        elevation="2"
+        outlined
+      >
+        <template slot="progress">
+          <v-progress-linear
+            color="deep-purple"
+            height="10"
+            indeterminate
+          ></v-progress-linear>
+        </template>
 
-      <v-card-title> {{ post.title }}</v-card-title>
+        <v-img
+          max-height="400"
+          contain
+          src="/PoC-1_Robins10_homepage.svg"
+        ></v-img>
 
-      <v-card-text>
-        <v-row align="center" class="mx-0 mb-10">
-          <v-chip dark small :color="post.category.color" class="mr-4">
-            <v-icon left> mdi-label </v-icon>
-            {{ post.category.name }}
-          </v-chip>
-          <div class="subtitle-1 mr-4">{{ post.author }}</div>
-          <div class="grey--text">{{ post.date }}</div>
-        </v-row>
+        <v-card-title> {{ post.title }}</v-card-title>
 
-        <div>{{ post.description }}</div>
-      </v-card-text>
+        <v-card-text>
+          <v-row align="center" class="mx-0 mb-10">
+            <v-chip dark small :color="post.category.color" class="mr-4">
+              <v-icon left> mdi-label </v-icon>
+              {{ post.category.name }}
+            </v-chip>
+            <div class="subtitle-1 mr-4">{{ post.author }}</div>
+            <div class="grey--text">{{ post.date }}</div>
+          </v-row>
 
-      <v-divider class="mx-4"></v-divider>
+          <div>{{ post.description }}</div>
+        </v-card-text>
 
-      <v-card-actions class="d-flex justify-space-between">
-        <v-btn color="primary" text @click="loadPostDetail(post.title)">
-          Read more
+        <v-divider class="mx-4"></v-divider>
+
+        <v-card-actions class="d-flex justify-space-between">
+          <v-btn color="primary" text @click="loadPostDetail(post.title)">
+            Read more
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+      <v-row align="center" justify="center" class="ma-5">
+        <v-btn :loading="more_btn_loading" color="primary" @click="loadMore">
+          Load More
         </v-btn>
-      </v-card-actions>
-    </v-card>
-    <v-row align="center" justify="center" class="ma-5">
-      <v-btn :loading="more_btn_loading" color="primary" @click="loadMore">
-        Load More
-      </v-btn>
-    </v-row>
-  </v-container>
+      </v-row>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -100,4 +118,10 @@ export default {
 }
 </script>
 
-<style scoped></style>
+<style scoped>
+#parallax-tittle,
+#parallax-subtittle {
+  font-family: 'Comfortaa', cursive !important;
+  font-weight: bold;
+}
+</style>

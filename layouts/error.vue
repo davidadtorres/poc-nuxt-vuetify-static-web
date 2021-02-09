@@ -1,6 +1,6 @@
 <template>
   <!-- <v-app> -->
-  <v-container v-if="error.statusCode === 404">
+  <v-container v-if="error.statusCode === 404" class="mt-4">
     <div class="d-flex justify-start">
       <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
     </div>
@@ -16,7 +16,7 @@
       />
     </div>
   </v-container>
-  <v-container v-else>
+  <v-container v-else class="mt-4">
     <div class="d-flex justify-start">
       <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
     </div>
@@ -45,7 +45,7 @@
 
 <script>
 export default {
-  layout: 'empty',
+  // layout: 'empty',
   props: {
     error: {
       type: Object,
@@ -57,12 +57,6 @@ export default {
       pageNotFound: '404 Not Found',
       otherError: 'An error occurred',
     }
-  },
-  beforeCreate() {
-    this.$store.commit('setError', true)
-  },
-  beforeDestroy() {
-    this.$store.commit('setError', false)
   },
   head() {
     const title =

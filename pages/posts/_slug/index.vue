@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-4">
     <v-row>
       <!-- Visible only for desktop -->
       <v-col cols="12" md="3" class="d-none d-md-block">
@@ -74,8 +74,7 @@
         <v-row>
           <v-col cols="12">
             <p class="text-h4 mb-10">
-              Creating this Robin's 10 homepage UI like a Blog, using Nuxt.js
-              with Vuetify
+              {{ slug }}
             </p>
             <v-row align="center" class="mx-0 mb-10 text-h5">
               <v-chip dark color="deep-purple darken-1" class="mr-4">

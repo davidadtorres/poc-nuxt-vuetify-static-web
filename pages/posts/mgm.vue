@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container class="mt-4">
     <div class="d-flex justify-space-between">
       <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
       <v-btn color="info" class="mb-2" to="/"> Add </v-btn>
