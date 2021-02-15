@@ -214,7 +214,7 @@
           v-for="item in settings"
           :key="item.title"
           link
-          to="/posts/mgm"
+          :to="item.to"
         >
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
@@ -356,12 +356,12 @@ export default {
         {
           title: 'Manage Posts',
           icon: 'mdi-file-document-edit',
-          to: 'posts-mgm',
+          to: '/posts/mgm',
         },
         {
           title: 'Manage Projects',
           icon: 'mdi-application',
-          to: 'posts-mgm',
+          to: '/projects/mgm',
         },
       ],
       login_alert: false,

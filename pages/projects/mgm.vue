@@ -1,11 +1,18 @@
 <template>
   <v-container class="mt-4">
-    <div class="d-flex justify-start">
+    <div class="d-flex justify-space-between">
       <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
+      <v-btn color="info" class="mb-2" to="/"> Add </v-btn>
     </div>
     <div class="d-flex justify-center">
-      <p class="text-h4">Project list</p>
+      <p class="text-h4 mb-0">Project list</p>
     </div>
+
+    <v-text-field
+      label="Search"
+      prepend-inner-icon="mdi-magnify"
+      clearable
+    ></v-text-field>
 
     <v-data-table
       :headers="headers"
@@ -28,12 +35,33 @@
         <!-- <v-icon small class="mr-2" @click="editItem(item)"> mdi-pencil </v-icon>
       <v-icon small @click="deleteItem(item)"> mdi-delete </v-icon> -->
 
-        <v-icon medium> mdi-information </v-icon>
-        <a style="text-decoration: none" :href="item.url" target="_blank"
-          ><v-icon medium> mdi-web </v-icon></a
-        >
+        <v-icon medium> mdi-pencil</v-icon>
+        <v-icon medium @click="delete_alert = true">
+          mdi-trash-can-outline
+        </v-icon>
+        <a style="text-decoration: none" :href="item.url" target="_blank">
+          <v-icon medium> mdi-web </v-icon>
+        </a>
       </template>
     </v-data-table>
+
+    <v-dialog v-model="delete_alert" max-width="400">
+      <v-card>
+        <v-card-title class="headline"> Remove definitively? </v-card-title>
+        <v-card-text>
+          Once this action is performed, it would cannot be reversed!
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" text @click="delete_alert = false">
+            Disagree
+          </v-btn>
+          <v-btn color="green darken-1" text @click="delete_alert = false">
+            Agree
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -70,6 +98,7 @@ export default {
     return {
       headers: HEADERS,
       projects: PROJECTS,
+      delete_alert: false,
     }
   },
   methods: {},
