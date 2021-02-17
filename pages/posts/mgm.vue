@@ -17,7 +17,7 @@
     <v-data-table
       :headers="headers"
       :items="posts"
-      class="elevation-2"
+      class="elevation-2 mb-10"
       hide-default-footer
     >
       <template v-slot:item.category="{ item }">

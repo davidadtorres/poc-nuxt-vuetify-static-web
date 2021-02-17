@@ -1,16 +1,38 @@
 <template>
-  <v-container class="mt-4">
-    <div class="d-flex justify-space-between">
+  <div class="mt-4 mx-2">
+    <div class="d-flex justify-space-between mx-4">
       <v-btn color="primary" class="mb-2" to="/"> Back Home </v-btn>
-      <v-btn color="info" class="mb-2" @click="validate"> Save </v-btn>
+
+      <v-menu bottom offset-y>
+        <template v-slot:activator="{ on, attrs }">
+          <v-btn color="info" dark v-bind="attrs" v-on="on"> Save </v-btn>
+        </template>
+
+        <v-list>
+          <v-list-item link @click="validate">
+            <v-list-item-title>Definitive</v-list-item-title>
+          </v-list-item>
+          <v-list-item link @click="validate">
+            <v-list-item-title>Draft</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
     </div>
     <div class="d-flex justify-center">
       <p class="text-h4 mb-0">New Post</p>
     </div>
 
-    <v-row no-gutters class="mb-10">
-      <v-col md="10" offset-md="1">
-        <v-form id="static" ref="form" v-model="valid" lazy-validation>
+    <v-row no-gutters class="mb-10 mx-4">
+      <v-col cols="12">
+        <v-form ref="form" v-model="valid" lazy-validation>
+          <v-file-input
+            show-size
+            label="Picture"
+            prepend-icon="mdi-camera"
+            :rules="rules"
+            required
+          ></v-file-input>
+
           <v-text-field
             label="Title"
             :rules="rules"
@@ -24,6 +46,8 @@
             required
             clearable
           ></v-text-field>
+
+          <v-text-field label="Repo URL" clearable></v-text-field>
 
           <v-menu
             v-model="date_menu"
@@ -61,9 +85,9 @@
             required
           ></v-select>
 
-          <v-card class="mb-8">
+          <v-card v-for="item in sections" :key="item.id" class="mb-8">
             <v-card-title>
-              <span class="headline">Section 1</span>
+              <span class="headline">Section #{{ item.id }}</span>
 
               <v-spacer></v-spacer>
 
@@ -74,6 +98,7 @@
 
             <v-card-text>
               <v-text-field
+                v-model="item.title"
                 label="Section title"
                 :rules="rules"
                 required
@@ -81,14 +106,21 @@
               ></v-text-field>
 
               <tiptap-vuetify
+                v-model="item.content"
                 placeholder="Add section content…"
                 :extensions="extensions"
                 class="mb-4"
               />
 
-              <v-card class="ml-8 mb-8">
+              <v-card
+                v-for="sitem in item.subsections"
+                :key="sitem.title"
+                class="ml-8 mb-8"
+              >
                 <v-card-title>
-                  <span class="headline">Sub-section 1.1</span>
+                  <span class="headline"
+                    >Sub-section #{{ item.id }}.{{ sitem.id }}</span
+                  >
 
                   <v-spacer></v-spacer>
 
@@ -99,6 +131,7 @@
 
                 <v-card-text>
                   <v-text-field
+                    v-model="sitem.title"
                     label="Sub-section title"
                     :rules="rules"
                     required
@@ -106,29 +139,32 @@
                   ></v-text-field>
 
                   <tiptap-vuetify
+                    v-model="sitem.content"
                     placeholder="Add sub-section content…"
                     :extensions="extensions"
                     class="mb-4"
                   />
                 </v-card-text>
               </v-card>
+
               <div class="d-flex justify-center">
-                <v-btn color="secondary"> New sub-section </v-btn>
+                <v-btn color="secondary" @click="createNewSubSection(item.id)">
+                  New sub-section
+                </v-btn>
               </div>
             </v-card-text>
           </v-card>
 
-          <v-btn id="button" color="secondary" @click="createNewSection">
+          <v-btn color="secondary" @click="createNewSection">
             New section
           </v-btn>
         </v-form>
       </v-col>
     </v-row>
-  </v-container>
+  </div>
 </template>
 
 <script>
-// import the component and the necessary extensions
 import {
   TiptapVuetify,
   Heading,
@@ -159,30 +195,37 @@ export default {
       date: new Date().toISOString().substr(0, 10),
       categories: ['PoC', 'Project', 'Management'],
       extensions: [
-        Image,
         History,
-        Blockquote,
-        Link,
-        Underline,
-        Strike,
-        Italic,
-        ListItem,
-        BulletList,
-        OrderedList,
         [
           Heading,
           {
             options: {
-              levels: [3],
+              levels: [2, 3],
             },
           },
         ],
         Bold,
-        Link,
+        Italic,
+        Underline,
+        Strike,
+        ListItem,
+        BulletList,
+        OrderedList,
+        Blockquote,
         Code,
+        Link,
+        Image,
         HorizontalRule,
         Paragraph,
         HardBreak,
+      ],
+      sections: [
+        {
+          id: 1,
+          title: 'Introduction',
+          content: 'This is my first instroduction...',
+          subsections: [{ id: 1, title: 'Test', content: 'Test content...' }],
+        },
       ],
     }
   },
@@ -191,73 +234,22 @@ export default {
       this.$refs.form.validate()
     },
     createNewSection() {
-      const stat = document.getElementById('static')
-      const vueContainer = document.createElement('div')
-      vueContainer.setAttribute('id', 'div-1')
-      vueContainer.innerHTML = `
-          <v-card class="mb-8">
-            <v-card-title>
-              <span class="headline">Section 1</span>
-
-              <v-spacer></v-spacer>
-
-              <v-btn icon>
-                <v-icon>mdi-close</v-icon>
-              </v-btn>
-            </v-card-title>
-
-            <v-card-text>
-              <v-text-field
-                label="Section title"
-                :rules="rules"
-                required
-                clearable
-              ></v-text-field>
-
-              <tiptap-vuetify
-                placeholder="Add section content…"
-                :extensions="extensions"
-                class="mb-4"
-              />
-
-              <v-card class="ml-8 mb-8">
-                <v-card-title>
-                  <span class="headline">Sub-section 1.1</span>
-
-                  <v-spacer></v-spacer>
-
-                  <v-btn icon>
-                    <v-icon>mdi-close</v-icon>
-                  </v-btn>
-                </v-card-title>
-
-                <v-card-text>
-                  <v-text-field
-                    label="Sub-section title"
-                    :rules="rules"
-                    required
-                    clearable
-                  ></v-text-field>
-
-                  <tiptap-vuetify
-                    placeholder="Add sub-section content…"
-                    :extensions="extensions"
-                    class="mb-4"
-                  />
-                </v-card-text>
-              </v-card>
-              <div class="d-flex justify-center">
-                <v-btn color="secondary"> New sub-section </v-btn>
-              </div>
-            </v-card-text>
-          </v-card>`
-      // stat.appendChild(vueContainer)
-
-      stat.insertBefore(vueContainer, document.getElementById('button'))
-      // TODO: Use same vue components into component inserted using Vue.extend
-      //   (https://vuejs.org/v2/api/#Vue-extend)
-      this.$mount(vueContainer)
+      this.sections.push({
+        id: this.sections.length + 1,
+        title: 'Conclusion test',
+        content: 'This is my first conclusion test content...',
+        subsections: [],
+      })
     },
+    createNewSubSection(sectId) {
+      this.sections[sectId - 1].subsections.push({
+        id: this.sections[sectId - 1].subsections.length + 1,
+        title: 'Conclusion SUBSECTION test',
+        content: 'This is my first conclusion SUBSECTION test content...',
+      })
+    },
+    // TODO: Create delete section/subsection feature
+    deleteSection() {},
     // reset() {
     //   this.$refs.form.reset()
     // },
