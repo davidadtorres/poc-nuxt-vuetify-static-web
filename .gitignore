@@ -118,5 +118,4 @@ dist
 *.code-workspace
 
 # Robin's 10 entries
-ci-cd/
 yarn.lock
